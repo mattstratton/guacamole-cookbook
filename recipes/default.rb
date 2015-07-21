@@ -14,16 +14,21 @@
   end
 end
 
+# Optional dependencies
+
+%w[freerdp-devel pango-devel libssh2-devel openssl-devel]
+
 remote_file "#{Chef::Config[:file_cache_path]}/guacamole-server-#{node['guacamole']['version']}.tar.gz" do
   source "http://tcpdiag.dl.sourceforge.net/project/guacamole/current/source/guacamole-server-#{node['guacamole']['version']}.tar.gz"
   mode '0644'
 end
 
-# bash "build-and-install-guacamole" do
-#   cwd Chef::Config[:file_cache_path]
-#   code <<-EOF
-#     tar -xzf guacamole-server-#{node['guacamole']['version']}.tar.gz
-#     (cd guacamole-server-#{node['guacamole']['version']} && ./configure --with-init-dir=/etc/init.d)
-#     (cd guacamole-server-#{node['guacamole']['version']} && make && make install)
-#   EOF
-# end
+bash "build-and-install-guacamole" do
+  cwd Chef::Config[:file_cache_path]
+  code <<-EOF
+    tar -xzf guacamole-server-#{node['guacamole']['version']}.tar.gz
+    (cd guacamole-server-#{node['guacamole']['version']} && ./configure --with-init-dir=/etc/init.d)
+    (cd guacamole-server-#{node['guacamole']['version']} && make && make install)
+    (cd guacamole-server-#{node['guacamole']['version']} && ldconfig)
+  EOF
+end
