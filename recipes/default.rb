@@ -32,3 +32,12 @@ bash "build-and-install-guacamole" do
     (cd guacamole-server-#{node['guacamole']['version']} && ldconfig)
   EOF
 end
+
+service 'guacd' do
+  supports :restart => true, :reload => true
+  action [ :enable, :start ]
+end
+
+# This is where we configure the guacamole-client. May need to refactor into a separate recipe later
+
+include_recipe 'tomcat::default'
