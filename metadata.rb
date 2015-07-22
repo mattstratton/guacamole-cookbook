@@ -7,3 +7,4 @@ long_description 'Installs/Configures guacamole-server, an HTML5 remote desktop 
 version '0.1.0'
 
 depends 'tomcat', '~> 0.17.3'
+depends 'java', '~> 1.31.0'

@@ -40,6 +40,8 @@ end
 
 # This is where we configure the guacamole-client. May need to refactor into a separate recipe later
 
+include_recipe 'java::default'
+
 node.override['tomcat']['base_version'] = 7
 suffix = node['tomcat']['base_version'].to_i < 7 ? node['tomcat']['base_version'] : ""
 
