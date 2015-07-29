@@ -16,7 +16,11 @@ end
 
 # Optional dependencies
 
-%w[freerdp-devel pango-devel libssh2-devel openssl-devel]
+%w[freerdp-devel pango-devel libssh2-devel openssl-devel].each do |package|
+  package package do
+    action :install
+  end
+end
 
 remote_file "#{Chef::Config[:file_cache_path]}/guacamole-server-#{node['guacamole']['version']}.tar.gz" do
   source "http://tcpdiag.dl.sourceforge.net/project/guacamole/current/source/guacamole-server-#{node['guacamole']['version']}.tar.gz"
@@ -27,9 +31,9 @@ bash "build-and-install-guacamole" do
   cwd Chef::Config[:file_cache_path]
   code <<-EOF
     tar -xzf guacamole-server-#{node['guacamole']['version']}.tar.gz
-    (cd guacamole-server-#{node['guacamole']['version']} && ./configure --with-init-dir=/etc/init.d)
-    (cd guacamole-server-#{node['guacamole']['version']} && make && make install)
-    (cd guacamole-server-#{node['guacamole']['version']} && ldconfig)
+    cd guacamole-server-#{node['guacamole']['version']} && ./configure --with-init-dir=/etc/init.d
+    make && make install
+    ldconfig
   EOF
 end
 
@@ -40,7 +44,7 @@ end
 
 # This is where we configure the guacamole-client. May need to refactor into a separate recipe later
 
-include_recipe 'java::default'
+# include_recipe 'java::default'
 
 node.override['tomcat']['base_version'] = 7
 suffix = node['tomcat']['base_version'].to_i < 7 ? node['tomcat']['base_version'] : ""
@@ -100,3 +104,6 @@ service 'tomcat_service' do
   supports :restart => true
   action :nothing
 end
+
+# nginx stuff
+package 'nginx'
