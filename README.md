@@ -2,7 +2,7 @@
 
 Installs and configures [guacamole](http://guac-dev.org), a clientless remote desktop gateway.
 
-To try it out, do a `kitchen converge` and then load up http://localhost:8080/guacamole. Log in with the username `student1` and password `chef`. The winnode may or may not work, depending on if Matt still has it online.
+To try it out, do a `kitchen converge` and then load up [http://localhost:8080/guacamole](http://localhost:8080/guacamole). Log in with the username `student1` and password `chef`. The winnode may or may not work, depending on if Matt still has it online.
 
 ## Requirements
 ### Platforms
