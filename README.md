@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/mattstratton/guacamole-cookbook.png?label=ready&title=Ready)](https://waffle.io/mattstratton/guacamole-cookbook)
 # guacamole
 
 Installs and configures [guacamole](http://guac-dev.org), a clientless remote desktop gateway.
