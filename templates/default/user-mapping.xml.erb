@@ -1,20 +1,24 @@
 <user-mapping>
-  <authorize username="student1" password="chef">
-    <connection name="student1-workstation">
+<% @usermap.each do |user, userdata| -%>
+  <authorize username="<%= userdata['name'] -%>" password="<%= userdata['password'] -%>">
+  <% userdata['machines'].each do |type, settings| -%>
+    <connection name="<%= userdata['name'] + "-" + type -%>">
+    <% if settings['platform_family'] == 'windows' %>
       <protocol>rdp</protocol>
-      <param name="hostname">matt-test-node.clouapp.net</param>
+    <% else -%>
+      <protocol>ssh</protocol>
+    <% end -%>
+      <param name="hostname"><%= settings['ec2']['public_hostname'] -%></param>
+    <% if settings['platform_family'] == 'windows' %>
       <param name="port">3389</param>
-      <param name="username">chef</param>
-      <param name="password">CodeCan!</param>
+    <% else -%>
+      <param name="port">22</param>
+    <% end -%>
+      <param name="username"><%= settings['guacamole_user'] -%></param>
+      <param name="password"><%= settings['guacamole_pass'] -%></param>
       <param name="ignore-cert">true</param>
     </connection>
-    <connection name="student1-winnode">
-      <protocol>rdp</protocol>
-      <param name="hostname">52.27.107.153</param>
-      <param name="port">3389</param>
-      <param name="username">chef</param>
-      <param name="password">Cod3Can!</param>
-      <param name="ignore-cert">true</param>
-    </connection>
+  <% end -%>
   </authorize>
+<% end -%>
 </user-mapping>
