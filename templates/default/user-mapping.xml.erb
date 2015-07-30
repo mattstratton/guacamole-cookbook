@@ -8,14 +8,14 @@
     <% else -%>
       <protocol>ssh</protocol>
     <% end -%>
-      <param name="hostname"><%= settings['hostname'] -%></param>
+      <param name="hostname"><%= settings['ec2']['public_hostname'] -%></param>
     <% if settings['platform_family'] == 'windows' %>
       <param name="port">3389</param>
     <% else -%>
       <param name="port">22</param>
     <% end -%>
-      <param name="username"><%= settings['username'] -%></param>
-      <param name="password"><%= settings['password'] -%></param>
+      <param name="username"><%= settings['guacamole_user'] -%></param>
+      <param name="password"><%= settings['guacamole_pass'] -%></param>
       <param name="ignore-cert">true</param>
     </connection>
   <% end -%>

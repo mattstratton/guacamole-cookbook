@@ -5,16 +5,20 @@ default['guacamole']['usermap']['default'] = {
                                               "password" => "chef",
                                               "machines" => {
                                                 "workstation" => {
-                                                  "hostname" => "matt-test-node.clouapp.net",
+                                                  "ec2" => {
+                                                    "public_hostname" => "matt-test-node.clouapp.net"
+                                                  },
                                                   "platform_family" => "windows",
-                                                  "username" => "chef",
-                                                  "password" => "CodeCan!"
+                                                  "guacamole_user" => "chef",
+                                                  "guacamole_pass" => "CodeCan!"
                                                 },
                                                 "winnode" => {
-                                                  "hostname" => "matt-test-node.clouapp.net",
+                                                  "ec2" => {
+                                                    "public_hostname" => "matt-test-node.clouapp.net"
+                                                  },
                                                   "platform_family" => "windows",
-                                                  "username" => "Administrator",
-                                                  "password" => "Cod3Can!"
+                                                  "guacamole_user" => "Administrator",
+                                                  "guacamole_pass" => "Cod3Can!"
                                                 }
                                               }
                                             }
