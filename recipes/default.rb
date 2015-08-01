@@ -25,6 +25,7 @@ end
 remote_file "#{Chef::Config[:file_cache_path]}/guacamole-server-#{node['guacamole']['version']}.tar.gz" do
   source "http://tcpdiag.dl.sourceforge.net/project/guacamole/current/source/guacamole-server-#{node['guacamole']['version']}.tar.gz"
   mode '0644'
+  action :create_if_missing
 end
 
 bash "build-and-install-guacamole" do
@@ -35,6 +36,7 @@ bash "build-and-install-guacamole" do
     make && make install
     ldconfig
   EOF
+  creates "#{Chef::Config[:file_cache_path]}/guacamole-server-#{node['guacamole']['version']}/config.log"
 end
 
 service 'guacd' do
@@ -77,6 +79,7 @@ directory "#{node['tomcat']['home']}/.guacamole"
 remote_file "/var/lib/guacamole/guacamole.war" do
   source "http://iweb.dl.sourceforge.net/project/guacamole/current/binary/guacamole-#{node['guacamole']['version']}.war"
   mode '0644'
+  action :create_if_missing
 end
 
 template '/etc/guacamole/guacamole.properties' do
@@ -106,6 +109,7 @@ service 'tomcat_service' do
   service_name node['tomcat']['base_instance']
   supports :restart => true
   action :nothing
+  retries 5
 end
 
 # nginx stuff
