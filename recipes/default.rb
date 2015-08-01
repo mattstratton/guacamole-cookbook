@@ -87,6 +87,9 @@ end
 
 template '/etc/guacamole/user-mapping.xml' do
   source 'user-mapping.xml.erb'
+  variables({
+    :usermap => node['guacamole']['usermap']
+  })
   mode '0644'
   notifies :restart, 'service[tomcat_service]'
 end
@@ -103,7 +106,6 @@ service 'tomcat_service' do
   service_name node['tomcat']['base_instance']
   supports :restart => true
   action :nothing
-  retries 5
 end
 
 # nginx stuff
