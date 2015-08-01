@@ -11,24 +11,11 @@
       <param name="hostname"><%= settings['ec2']['public_hostname'] -%></param>
     <% if settings['platform_family'] == 'windows' %>
       <param name="port">3389</param>
-<<<<<<< HEAD
     <% else -%>
       <param name="port">22</param>
     <% end -%>
       <param name="username"><%= settings['guacamole_user'] -%></param>
       <param name="password"><%= settings['guacamole_pass'] -%></param>
-=======
-      <param name="username">chef</param>
-      <param name="password">CodeCan!</param>
-      <param name="ignore-cert">true</param>
-    </connection>
-    <connection name="student1-winnode">
-      <protocol>rdp</protocol>
-      <param name="hostname">52.27.107.153</param>
-      <param name="port">3389</param>
-      <param name="username">chef</param>
-      <param name="password">Cod3Can!</param>
->>>>>>> b5f0c89... Bump version and add some other stuff
       <param name="ignore-cert">true</param>
     </connection>
   <% end -%>
