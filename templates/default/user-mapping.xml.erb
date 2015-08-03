@@ -19,7 +19,7 @@
         <param name="username"><%= settings['guacamole_user'] -%></param>
           <% if settings['guacamole_key'] -%>
         <param name="private-key"><% File.open(settings['guacamole_key']).readlines.each do |line| -%>
-            <% puts line %>
+            <%= line %>
           <% end %></param>
           <% else -%>
         <param name="password"><%= settings['guacamole_pass'] -%></param>
