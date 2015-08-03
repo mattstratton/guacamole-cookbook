@@ -18,10 +18,10 @@
           <% end -%>
         <param name="username"><%= settings['guacamole_user'] -%></param>
           <% if settings['guacamole_key'] -%>
-        <param name="private-key">
-        <% IO.read(settings['guacamole_key']) %>
-        </param>
-          <%else -%>
+        <param name="private-key"><% File.open(settings['guacamole_key']).readlines.each do |line| -%>
+            <% puts line %>
+          <% end %></param>
+          <% else -%>
         <param name="password"><%= settings['guacamole_pass'] -%></param>
           <% end -%>
         <param name="ignore-cert">true</param>
