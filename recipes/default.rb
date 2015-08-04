@@ -109,6 +109,7 @@ service 'tomcat_service' do
   service_name node['tomcat']['base_instance']
   supports :restart => true
   action :nothing
+  retries 5
 end
 
 # nginx stuff
