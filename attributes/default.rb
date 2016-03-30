@@ -1,4 +1,4 @@
-default['guacamole']['version'] = '0.9.7'
+default['guacamole']['version'] = '0.9.9'
 
 default['guacamole']['usermap']['default'] = {
                                               "name" => "student1",
