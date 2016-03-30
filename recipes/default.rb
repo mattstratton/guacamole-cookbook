@@ -79,7 +79,7 @@ end
 
 template '/etc/guacamole/user-mapping.xml' do
   source 'user-mapping.xml.erb'
-  variables(:usermap => node['guacamole']['usermap'])
+  variables({:usermap => node['guacamole']['usermap']})
   mode '0644'
   notifies :restart, 'tomcat_service[guacamole]'
 end
