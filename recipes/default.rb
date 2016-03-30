@@ -104,9 +104,6 @@ directory '/home/tomcat_guacamole' do
   action :create
 end
 
-#link "#{node['tomcat']['webapp_dir']}/guacamole.war" do
-#  to '/var/lib/guacamole/guacamole.war'
-#end
 
 link "#{node['tomcat']['home']}/.guacamole/guacamole.properties" do
   to '/etc/guacamole/guacamole.properties'

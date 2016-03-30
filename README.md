@@ -7,7 +7,7 @@ To try it out, do a `kitchen converge` and then load up [http://localhost:8080/g
 
 ## Requirements
 ### Platforms
-- CentOS 6
+- Ubuntu 14.04
 
 ### Dependencies
 - tomcat
@@ -17,6 +17,7 @@ To try it out, do a `kitchen converge` and then load up [http://localhost:8080/g
 
 ## License & Authors
 - Author: Matt Stratton (<mattstratton@chef.io>)
+- Author: Ian Henry (<ihenry@chef.io>)
 
 ```text
 Copyright:: 2015, Matt Stratton
