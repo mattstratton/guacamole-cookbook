@@ -46,15 +46,6 @@ service 'guacd' do
   action [ :enable, :start ]
 end
 
-group 'tomcat' do
-  action :create
-  append true
-end
-
-user 'tomcat' do
-  action :create
-  group 'tomcat'
-end
 # This is where we configure the guacamole-client. May need to refactor into a separate recipe later
 node.default['java']['jdk_version'] = '7'
 include_recipe 'java::default'
